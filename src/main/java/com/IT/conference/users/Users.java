@@ -1,15 +1,28 @@
-package com.IT.conference.user;
+package com.IT.conference.users;
 
-public class User {
+import javax.persistence.*;
 
+@Entity
+@Table
+public class Users {
+    @Id
+    @SequenceGenerator(
+            name = "users_sequence",
+            sequenceName = "users_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "users_sequence"
+    )
     private Long id;
     private String login;
     private String email;
 
-    public User() {
+    public Users() {
     }
 
-    public User(Long id,
+    public Users(Long id,
                 String login,
                 String email) {
         this.id = id;
@@ -17,7 +30,7 @@ public class User {
         this.email = email;
     }
 
-    public User(String login,
+    public Users(String login,
                 String email) {
         this.login = login;
         this.email = email;
