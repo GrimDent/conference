@@ -9,7 +9,7 @@ import java.util.List;
 @Configuration
 public class UsersConfig {
     @Bean
-    CommandLineRunner commandLineRunner(UsersRepository repository){
+    CommandLineRunner commandLineRunnerUsers(UsersRepository repository){
         return args -> {
             Users user1 = new Users(
                     "sampleLogin",
