@@ -1,6 +1,11 @@
 package com.IT.conference.users;
 
+import com.IT.conference.prelections.Prelections;
+
 import javax.persistence.*;
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -18,6 +23,14 @@ public class Users {
     private Long id;
     private String login;
     private String email;
+
+    @ManyToMany
+    @JoinTable(
+            name = "connections",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "stream_id")
+    )
+    private List<Prelections> connections = new ArrayList<>();
 
     public Users() {
     }

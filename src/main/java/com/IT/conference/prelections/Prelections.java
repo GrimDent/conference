@@ -1,6 +1,10 @@
 package com.IT.conference.prelections;
 
+import com.IT.conference.users.Users;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -18,6 +22,9 @@ public class Prelections {
     private Long Id;
     private String thematic_path;
     private String start_hour;
+
+    @ManyToMany(mappedBy = "connections")
+    private List<Users> connections = new ArrayList<>();
 
     public Prelections() {
     }
