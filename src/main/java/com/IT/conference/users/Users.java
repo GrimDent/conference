@@ -28,7 +28,7 @@ public class Users {
     @JoinTable(
             name = "connections",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "stream_id")
+            inverseJoinColumns = @JoinColumn(name = "prelection_id")
     )
     private List<Prelections> connections = new ArrayList<>();
 

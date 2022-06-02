@@ -11,18 +11,7 @@ public class UsersConfig {
     @Bean
     CommandLineRunner commandLineRunnerUsers(UsersRepository repository){
         return args -> {
-            Users user1 = new Users(
-                    "sampleLogin",
-                    "sample.mail@gmail.com"
-            );
-            Users user2 = new Users(
-                    "anotherLogin",
-                    "another.mail@gmail.com"
-            );
-
-            repository.saveAll(
-                    List.of(user1, user2)
-            );
+            
         };
     }
 }
