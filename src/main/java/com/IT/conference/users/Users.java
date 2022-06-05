@@ -1,9 +1,9 @@
 package com.IT.conference.users;
 
 import com.IT.conference.prelections.Prelections;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,17 +20,20 @@ public class Users {
             strategy = GenerationType.SEQUENCE,
             generator = "users_sequence"
     )
+
     private Long id;
+    @NotNull
     private String login;
+    @NotNull
     private String email;
 
     @ManyToMany
     @JoinTable(
-            name = "connections",
+            name = "registerToPrelection",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "prelection_id")
     )
-    private List<Prelections> connections = new ArrayList<>();
+    private List<Prelections> register = new ArrayList<>();
 
     public Users() {
     }
@@ -71,6 +74,10 @@ public class Users {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void register(Prelections prelection){
+        register.add(prelection);
     }
 
     @Override

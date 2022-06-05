@@ -1,28 +1,35 @@
 package com.IT.conference.users;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping(path = "api/v1/users")
 public class UsersController {
-    private final UserService userService;
+    private final UsersService usersService;
 
     @Autowired
-    public UsersController(UserService userService) {
-        this.userService = userService;
+    public UsersController(UsersService usersService) {
+        this.usersService = usersService;
     }
 
     @GetMapping
     public List<Users> getUsers() {
-        return userService.getUsers();
+        return usersService.getUsers();
     }
 
     @PostMapping
     public void registerNewUser(@RequestBody Users user) {
-        userService.addNewUser(user);
+        usersService.addNewUser(user);
+    }
+
+    @PostMapping(value = "/register", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public void registerToPrelection(@RequestPart String login, @RequestPart String email, @RequestPart String prelectionId) throws Exception {
+        Long id = Long.parseLong(prelectionId);
+        usersService.registerToPrelection(login, email, id);
     }
 }

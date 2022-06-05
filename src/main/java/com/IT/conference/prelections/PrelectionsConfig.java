@@ -12,11 +12,7 @@ public class PrelectionsConfig {
     @Bean
     CommandLineRunner commandLineRunnerPrelections(PrelectionsRepository repository){
         return args -> {
-            Prelections prelection1 = new Prelections(
-                    "thematic path 1",
-                    "10:00"
-            );
-            String[] thematic_paths = {"thematic_path1", "thematic_path2", "thematic_path3"};
+            String[] thematic_paths = {"How to write good API", "How to make your services look spectacular", "How to find job in IT"};
             String[] start_hour = {"10:00", "12:00", "14:00"};
             List<Prelections> prelections = new ArrayList<>();
             for(int i=0; i<9; i++){

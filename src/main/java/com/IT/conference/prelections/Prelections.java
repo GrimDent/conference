@@ -1,6 +1,7 @@
 package com.IT.conference.prelections;
 
 import com.IT.conference.users.Users;
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,11 +21,15 @@ public class Prelections {
             generator = "prelections_sequence"
     )
     private Long Id;
+    @NotNull
     private String thematic_path;
+    @NotNull
     private String start_hour;
+    @NotNull
+    private String title;
 
-    @ManyToMany(mappedBy = "connections")
-    private List<Users> connections = new ArrayList<>();
+    @ManyToMany(mappedBy = "register")
+    private List<Users> audience = new ArrayList<>();
 
     public Prelections() {
     }
@@ -65,6 +70,10 @@ public class Prelections {
 
     public void setStart_hour(String start_hour) {
         this.start_hour = start_hour;
+    }
+
+    public void audience(Users user){
+        audience.add(user);
     }
 
     @Override
