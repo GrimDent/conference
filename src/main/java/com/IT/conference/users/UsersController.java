@@ -32,4 +32,9 @@ public class UsersController {
         Long id = Long.parseLong(prelectionId);
         usersService.registerToPrelection(login, email, id);
     }
+    @DeleteMapping(value = "/resign", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    public void resignFromPrelection(@RequestPart String login, @RequestPart String email, @RequestPart String prelectionId) throws Exception {
+        Long id = Long.parseLong(prelectionId);
+        usersService.resignFromPrelection(login, email, id);
+    }
 }

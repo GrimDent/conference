@@ -35,6 +35,7 @@ public class Users {
     )
     private List<Prelections> register = new ArrayList<>();
 
+
     public Users() {
     }
 
@@ -78,6 +79,10 @@ public class Users {
 
     public void register(Prelections prelection){
         register.add(prelection);
+    }
+
+    public void delete(Prelections prelection){
+        register.remove(prelection);
     }
 
     @Override

@@ -44,5 +44,16 @@ public class UsersService {
         user.register(prelection);
         usersRepository.save(user);
         }
+
+    public void resignFromPrelection(String login, String email,  Long prelectionId) throws Exception {
+        Users user = usersRepository.findUserByLogin(login).get();
+        Users user_confirm = usersRepository.findUserByEmail(email).get();
+        if(user != user_confirm){
+            throw new Exception("login or email adress is incorrect");
+        }
+        Prelections prelection = prelectionsRepository.findById(prelectionId).get();
+        user.delete(prelection);
+        usersRepository.save(user);
+    }
     }
 

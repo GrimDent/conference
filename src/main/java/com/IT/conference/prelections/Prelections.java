@@ -25,8 +25,6 @@ public class Prelections {
     private String thematic_path;
     @NotNull
     private String start_hour;
-    @NotNull
-    private String title;
 
     @ManyToMany(mappedBy = "register")
     private List<Users> audience = new ArrayList<>();
