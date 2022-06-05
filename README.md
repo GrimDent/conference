@@ -17,4 +17,12 @@ POST http://localhost:8080/api/v1/users/register/
 data passed via form data (key value)
 1. login Bob777
 2. prelectionId 5
+3. email bob777@gmail.com
+
+DELETE http://localhost:8080/api/v1/users/resign/
+- allows user to resign from the specific prelection
+  data passed via form data (key value)
+1. login Bob777
+2. prelectionId 5
+3. email bob777@gmail.com
 
