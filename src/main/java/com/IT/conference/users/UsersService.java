@@ -3,8 +3,10 @@ package com.IT.conference.users;
 import com.IT.conference.prelections.Prelections;
 import com.IT.conference.prelections.PrelectionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +27,8 @@ public class UsersService {
                 return usersRepository.findAll();
     }
 
-    public void addNewUser(Users user) {
+    public void addNewUser(String login, String email) {
+        Users user = new Users(login, email);
         Optional<Users> userByEmail =  usersRepository.findUserByEmail(user.getEmail());
         if(userByEmail.isPresent()){
             throw new IllegalStateException("email taken");
@@ -55,5 +58,5 @@ public class UsersService {
         user.delete(prelection);
         usersRepository.save(user);
     }
-    }
+}
 

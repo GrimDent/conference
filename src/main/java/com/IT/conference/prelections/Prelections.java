@@ -20,11 +20,13 @@ public class Prelections {
             strategy = GenerationType.SEQUENCE,
             generator = "prelections_sequence"
     )
-    private Long Id;
+    private Long id;
     @NotNull
     private String thematic_path;
     @NotNull
     private String start_hour;
+    @NotNull
+    private String title;
 
     @ManyToMany(mappedBy = "register")
     private List<Users> audience = new ArrayList<>();
@@ -34,24 +36,37 @@ public class Prelections {
 
     public Prelections(Long id,
                        String thematic_path,
-                       String start_hour) {
-        Id = id;
+                       String start_hour,
+                       String title) {
+        this.id = id;
         this.thematic_path = thematic_path;
         this.start_hour = start_hour;
+        this.title = title;
     }
 
     public Prelections(String thematic_path,
-                       String start_hour) {
+                       String start_hour,
+                       String title) {
         this.thematic_path = thematic_path;
         this.start_hour = start_hour;
+        this.title = title;
+    }
+
+    public Prelections(Long id, String title) {
+        this.id = id;
+        this.title = title;
+    }
+
+    public Prelections(String title) {
+        this.title = title;
     }
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public String getThematic_path() {
@@ -74,12 +89,22 @@ public class Prelections {
         audience.add(user);
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     @Override
     public String toString() {
         return "Prelections{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", thematic_path='" + thematic_path + '\'' +
-                ", hour='" + start_hour + '\'' +
+                ", start_hour='" + start_hour + '\'' +
+                ", title='" + title + '\'' +
+                ", audience=" + audience +
                 '}';
     }
 }

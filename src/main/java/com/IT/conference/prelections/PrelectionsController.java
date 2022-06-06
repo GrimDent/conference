@@ -21,4 +21,8 @@ public class PrelectionsController {
     public List<Prelections> getPrelections(){
         return prelectionsService.getPrelections();
     }
+    @GetMapping (value = "/yourPrelections")
+    public List<Prelections> getYourPrelections(){
+        return prelectionsService.checkYourPrelections();
+    }
 }

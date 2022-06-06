@@ -23,8 +23,8 @@ public class UsersController {
     }
 
     @PostMapping
-    public void registerNewUser(@RequestBody Users user) {
-        usersService.addNewUser(user);
+    public void registerNewUser(@RequestPart String login, @RequestPart String email) {
+        usersService.addNewUser(login, email);
     }
 
     @PostMapping(value = "/register", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
