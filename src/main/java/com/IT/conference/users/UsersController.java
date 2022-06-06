@@ -37,4 +37,8 @@ public class UsersController {
         Long id = Long.parseLong(prelectionId);
         usersService.resignFromPrelection(login, email, id);
     }
+    @PostMapping(value="/update")
+    public void updateMail(@RequestPart String login, @RequestPart String email){
+        usersService.updateEmail(login, email);
+    }
 }

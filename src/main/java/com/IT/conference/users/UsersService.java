@@ -78,5 +78,19 @@ public class UsersService {
         user.delete(prelection);
         usersRepository.save(user);
     }
+
+    public void updateEmail(String login, String email) {
+        Users user = new Users(login, email);
+        Optional<Users> userByEmail =  usersRepository.findUserByEmail(user.getEmail());
+        if(userByEmail.isPresent()){
+            throw new IllegalStateException("email taken");
+        }
+        Optional<Users> userByLogin =  usersRepository.findUserByLogin(user.getLogin());
+        if(!userByLogin.isPresent()){
+            throw new IllegalStateException("no such login");
+        }
+        Users confirmedLogin = usersRepository.findUserByLogin(login).get();
+        usersRepository.save(confirmedLogin);
+    }
 }
 
