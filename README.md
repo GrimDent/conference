@@ -11,7 +11,7 @@ data passed via form data (key value)
 1. login Bob777
 
 POST http://localhost:8080/api/v1/users 
-- allows to create new user (data passed as a JSON)
+- allows to create new user
 data passed via form data (key value)
 - Example:
 1. login sampleLogin
@@ -32,4 +32,11 @@ DELETE http://localhost:8080/api/v1/users/resign/
 1. login Bob777
 2. prelectionId 5
 3. email bob777@gmail.com
+
+POST http://localhost:8080/api/v1/users/update
+- allows to update user's email
+  data passed via form data (key value)
+- Example:
+1. login sampleLogin
+2. email sample.mail@gmail.com
 

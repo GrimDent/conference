@@ -86,10 +86,11 @@ public class UsersService {
             throw new IllegalStateException("email taken");
         }
         Optional<Users> userByLogin =  usersRepository.findUserByLogin(user.getLogin());
-        if(!userByLogin.isPresent()){
+        if(userByLogin.isEmpty()){
             throw new IllegalStateException("no such login");
         }
         Users confirmedLogin = usersRepository.findUserByLogin(login).get();
+        confirmedLogin.setEmail(email);
         usersRepository.save(confirmedLogin);
     }
 }
