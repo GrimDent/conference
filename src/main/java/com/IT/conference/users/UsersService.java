@@ -5,9 +5,11 @@ import com.IT.conference.prelections.PrelectionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.io.File;
+import java.io.FileWriter;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 @Service
 public class UsersService {
@@ -61,6 +63,22 @@ public class UsersService {
         if(check5(prelection.getId())){
             user.register(prelection);
             usersRepository.save(user);
+            try{
+                FileWriter fw = new FileWriter("notifications.txt");
+                Map<String, String> dataToFile = new HashMap<>();
+                LocalDateTime date = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME;
+                String formattedDate = date.format(formatter);
+                dataToFile.put("date", formattedDate);
+                dataToFile.put("email", user.getEmail());
+                dataToFile.put("prelection", prelection.getTitle());
+                fw.write(dataToFile.get("date"));
+                fw.write(dataToFile.get("email"));
+                fw.write(dataToFile.get("prelection"));
+            }
+            catch (Exception e){
+                throw new Exception("error occured during sending you a notification");
+            }
             return;
         }
             throw new Exception("There are 0 tickets left");
