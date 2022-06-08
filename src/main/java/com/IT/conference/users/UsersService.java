@@ -3,10 +3,8 @@ package com.IT.conference.users;
 import com.IT.conference.prelections.Prelections;
 import com.IT.conference.prelections.PrelectionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -51,7 +49,7 @@ public class UsersService {
         Users user = usersRepository.findUserByLogin(login).get();
         Users user_confirm = usersRepository.findUserByEmail(email).get();
         Prelections prelection = prelectionsRepository.findById(prelectionId).get();
-        List<Prelections> join = prelectionsRepository.selectJoin(user.getId());
+        List<Prelections> join = prelectionsRepository.selectOne(user.getId());
         for(int i = 0; i<join.size(); i++){
             if(Objects.equals(prelection.getStart_hour(), join.get(i).getStart_hour())){
                 throw new Exception("You have prelection at this time already");

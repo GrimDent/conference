@@ -27,17 +27,17 @@ public class UsersController {
         usersService.addNewUser(login, email);
     }
 
-    @PostMapping(value = "/register", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @PostMapping(value = "/prelection", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public void registerToPrelection(@RequestPart String login, @RequestPart String email, @RequestPart String prelectionId) throws Exception {
         Long id = Long.parseLong(prelectionId);
         usersService.registerToPrelection(login, email, id);
     }
-    @DeleteMapping(value = "/resign", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
+    @DeleteMapping(value = "/prelection", consumes = {MediaType.MULTIPART_FORM_DATA_VALUE})
     public void resignFromPrelection(@RequestPart String login, @RequestPart String email, @RequestPart String prelectionId) throws Exception {
         Long id = Long.parseLong(prelectionId);
         usersService.resignFromPrelection(login, email, id);
     }
-    @PostMapping(value="/update")
+    @PutMapping
     public void updateMail(@RequestPart String login, @RequestPart String email){
         usersService.updateEmail(login, email);
     }
